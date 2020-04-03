@@ -28,3 +28,5 @@ services:
 
     App\GameLogic\Service\Security:
         public: true
+    App\GameLogic\Service\World:
+        public: true

@@ -2,10 +2,11 @@
 
 namespace App\GameLogic;
 
-use App\GameLogic\DataTransfer\Request;
+use App\GameLogic\DataTransfer\SocketRequest;
 use App\GameLogic\DataTransfer\ResponseInterface;
 use App\GameLogic\Exception\ServiceNotFoundException;
 use App\GameLogic\Service\Security;
+use App\GameLogic\Service\World;
 use App\Service\Serializer\Serializer;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -15,7 +16,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ServiceFactory
 {
     private $services = [
-        'security' => Security::class
+        'security' => Security::class,
+        'world' => World::class
     ];
 
     /**
@@ -39,11 +41,11 @@ class ServiceFactory
     }
 
     /**
-     * @param Request $request
+     * @param SocketRequest $request
      * @return ResponseInterface
      * @throws ServiceNotFoundException
      */
-    public function run(Request $request): ResponseInterface
+    public function run(SocketRequest $request): ResponseInterface
     {
         $service = $this->container->get($this->services[$request->getService()]);
         if (!$service) {

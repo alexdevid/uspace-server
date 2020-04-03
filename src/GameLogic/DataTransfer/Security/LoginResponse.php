@@ -3,13 +3,13 @@
 namespace App\GameLogic\DataTransfer\Security;
 
 use App\Entity\User;
-use App\GameLogic\DataTransfer\Response;
+use App\GameLogic\DataTransfer\ResponseInterface;
 use JMS\Serializer\Annotation\Type;
 
 /**
  * @author Alexander Tsukanov <https://alexdevid.com>
  */
-class LoginResponse extends Response
+class LoginResponse implements ResponseInterface
 {
     /**
      * @Type("integer")

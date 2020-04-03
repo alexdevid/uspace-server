@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\GameLogic\DataTransfer\Request;
+use App\GameLogic\DataTransfer\SocketRequest;
 use App\GameLogic\Exception\BadParametersException;
 use App\GameLogic\ServiceFactory;
 use App\Service\Serializer\Serializer;
@@ -63,7 +63,6 @@ class SocketServer implements MessageComponentInterface
             return;
         }
 
-        sleep(2);
         try {
             $message = $this->getDataTransferObject($msg);
             $this->logger->info($msg);
@@ -78,14 +77,10 @@ class SocketServer implements MessageComponentInterface
             }
 
             $response = $this->factory->run($message);
-            $response->uid = $message->getUid();
-
             $from->send($this->serializer->serialize($response));
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
-            $message = json_decode($msg, true);
             $from->send($this->serializer->serialize([
-                'uid' => $message['uid'] ?? null,
                 'error' => (new \ReflectionClass($e))->getShortName(),
                 'message' => $e->getMessage()
             ]));
@@ -111,10 +106,10 @@ class SocketServer implements MessageComponentInterface
 
     /**
      * @param string $message
-     * @return Request|null
+     * @return SocketRequest|null
      */
-    private function getDataTransferObject(string $message): ?Request
+    private function getDataTransferObject(string $message): ?SocketRequest
     {
-        return $this->serializer->deserialize($message, Request::class);
+        return $this->serializer->deserialize($message, SocketRequest::class);
     }
 }

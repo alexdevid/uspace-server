@@ -7,13 +7,13 @@ use JMS\Serializer\Annotation\Type;
 /**
  * @author Alexander Tsukanov <https://alexdevid.com>
  */
-class Request
+class SocketRequest
 {
     /**
      * @Type("string")
      * @var string
      */
-    public $uid;
+    public $token;
 
     /**
      * @Type("string")
@@ -58,9 +58,9 @@ class Request
     /**
      * @return string|null
      */
-    public function getUid(): ?string
+    public function getToken(): ?string
     {
-        return $this->uid;
+        return $this->token;
     }
 
     /**
