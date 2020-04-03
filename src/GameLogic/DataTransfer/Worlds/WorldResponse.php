@@ -23,8 +23,8 @@ class WorldResponse implements ResponseInterface
     public $name;
 
     /**
-     * @Serializer\Type("DateTime")
-     * @var \DateTime
+     * @Serializer\Type("integer")
+     * @var integer
      */
     public $createdAt;
 
@@ -62,7 +62,7 @@ class WorldResponse implements ResponseInterface
     {
         $this->id = 32;
         $this->name = "Eva";
-        $this->createdAt = new \DateTime();
+        $this->createdAt = time();
         $this->status = 1;
         $this->seed = 393108462;
         $this->systemsTotal = 50000;

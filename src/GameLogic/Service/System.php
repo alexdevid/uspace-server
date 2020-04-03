@@ -52,7 +52,7 @@ class System implements GameServiceInterface
     /**
      * @param int $id
      * @return SystemResponse
-     * 
+     *
      * @throws DomainObjectNotFoundException
      */
     public function getSystem(int $id): SystemResponse

@@ -29,8 +29,8 @@ class SystemResponse extends GameObjectResponse
     public $size;
 
     /**
-     * @Serializer\Type("DateTime")
-     * @var \DateTime
+     * @Serializer\Type("integer")
+     * @var integer
      */
     public $discoveredAt;
 
@@ -48,7 +48,7 @@ class SystemResponse extends GameObjectResponse
         $this->id = $system->getId();
         $this->seed = $system->getSeed();
         $this->size = $system->getSize();
-        $this->discoveredAt = $system->getDiscoveredAt();
+        $this->discoveredAt = $system->getDiscoveredAt()->getTimestamp();
         $this->discoveredBy = $system->getDiscoveredBy() ? $system->getDiscoveredBy()->getUsername() : null;
 
         parent::__construct($system);
