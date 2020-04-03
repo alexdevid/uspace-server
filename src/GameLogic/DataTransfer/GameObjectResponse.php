@@ -3,6 +3,7 @@
 namespace App\GameLogic\DataTransfer;
 
 use App\Entity\GameObject;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @author Alexander Tsukanov <https://alexdevid.com>

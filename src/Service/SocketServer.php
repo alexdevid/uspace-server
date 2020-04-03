@@ -56,7 +56,7 @@ class SocketServer implements MessageComponentInterface
     public function onMessage(ConnectionInterface $from, $msg)
     {
         $this->logger->info(sprintf('message from: %s', $from->resourceId));
-        $this->logger->info($msg);
+        $this->logger->info('<<< --- ' . $msg);
         if (empty($msg)) {
             $this->logger->warning(sprintf('empty request'));
 
@@ -65,10 +65,6 @@ class SocketServer implements MessageComponentInterface
 
         try {
             $message = $this->getDataTransferObject($msg);
-            $this->logger->info($msg);
-
-            $this->logger->info(sprintf('action: `%s`', $message->getMethod()));
-
             if (!$message->getService()) {
                 throw new BadParametersException("service name was not recognized");
             }
@@ -77,10 +73,10 @@ class SocketServer implements MessageComponentInterface
             }
 
             $response = $this->factory->run($message);
-            $this->logger->info($this->serializer->serialize($response));
+            $this->logger->info('--- >>> ' . $this->serializer->serialize($response));
             $from->send($this->serializer->serialize($response));
         } catch (\Exception $e) {
-            $this->logger->error($e->getMessage());
+            $this->logger->error($e->getMessage(), $e->getTrace());
             $from->send($this->serializer->serialize([
                 'error' => (new \ReflectionClass($e))->getShortName(),
                 'message' => $e->getMessage()

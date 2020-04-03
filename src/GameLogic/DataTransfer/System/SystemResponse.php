@@ -4,6 +4,7 @@ namespace App\GameLogic\DataTransfer\System;
 
 use App\Entity\System;
 use App\GameLogic\DataTransfer\GameObjectResponse;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @author Alexander Tsukanov <https://alexdevid.com>
@@ -48,7 +49,7 @@ class SystemResponse extends GameObjectResponse
         $this->id = $system->getId();
         $this->seed = $system->getSeed();
         $this->size = $system->getSize();
-        $this->discoveredAt = $system->getDiscoveredAt()->getTimestamp();
+        $this->discoveredAt = $system->getDiscoveredAt() ? $system->getDiscoveredAt()->getTimestamp() : null;
         $this->discoveredBy = $system->getDiscoveredBy() ? $system->getDiscoveredBy()->getUsername() : null;
 
         parent::__construct($system);

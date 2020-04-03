@@ -42,7 +42,7 @@ class LoginResponse implements ResponseInterface
     public $flag;
 
     /**
-     * @Serializer\Type("integer")
+     * @Type("integer")
      * @var integer
      */
     public $createdAt;
@@ -54,6 +54,6 @@ class LoginResponse implements ResponseInterface
         $this->token = $user->getToken();
         $this->email = $user->getEmail();
         $this->flag = $user->getFlag();
-        $this->createdAt = $user->getCreatedAt()->getTimestamp();
+        $this->createdAt = $user->getCreatedAt() ? $user->getCreatedAt()->getTimestamp() : null;
     }
 }

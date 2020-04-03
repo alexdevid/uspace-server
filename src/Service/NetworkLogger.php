@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Service\Serializer\Serializer;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
@@ -16,11 +17,18 @@ class NetworkLogger implements LoggerInterface
     private $logger;
 
     /**
-     * @param LoggerInterface $logger
+     * @var LoggerInterface
      */
-    public function __construct(LoggerInterface $logger)
+    private $serializer;
+
+    /**
+     * @param LoggerInterface $logger
+     * @param Serializer $serializer
+     */
+    public function __construct(LoggerInterface $logger, Serializer $serializer)
     {
         $this->logger = $logger;
+        $this->serializer = $serializer;
     }
 
     /**
@@ -102,7 +110,12 @@ class NetworkLogger implements LoggerInterface
      */
     public function log($level, $message, array $context = array())
     {
-        echo sprintf('[network.%s] %s', $level, $message) . PHP_EOL;
+        $output = sprintf('[network.%s] %s', $level, $message);
+        if ($context) {
+            $output .= PHP_EOL . 'trace: ' . $this->serializer->serialize($context);
+        }
+
+        echo  $output . PHP_EOL;
     }
 
 }

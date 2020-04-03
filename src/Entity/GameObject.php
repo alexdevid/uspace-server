@@ -26,19 +26,19 @@ abstract class GameObject
      * @ORM\Column(type="float", nullable=true)
      * @var float
      */
-    protected $x;
+    protected $x = 0;
 
     /**
      * @ORM\Column(type="float", nullable=true)
      * @var float
      */
-    protected $y;
+    protected $y = 0;
 
     /**
      * @ORM\Column(type="float", nullable=true)
-     * @var float
+     * @var float|null
      */
-    protected $speed;
+    protected $speed = 0;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="systems")
@@ -87,7 +87,7 @@ abstract class GameObject
     /**
      * @return float
      */
-    public function getX(): float
+    public function getX(): ?float
     {
         return $this->x;
     }
@@ -106,7 +106,7 @@ abstract class GameObject
     /**
      * @return float
      */
-    public function getY(): float
+    public function getY(): ?float
     {
         return $this->y;
     }
@@ -125,7 +125,7 @@ abstract class GameObject
     /**
      * @return float
      */
-    public function getSpeed(): float
+    public function getSpeed(): ?float
     {
         return $this->speed;
     }

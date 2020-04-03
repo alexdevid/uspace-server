@@ -6,6 +6,7 @@ use App\GameLogic\DataTransfer\SocketRequest;
 use App\GameLogic\DataTransfer\ResponseInterface;
 use App\GameLogic\Exception\ServiceNotFoundException;
 use App\GameLogic\Service\Security;
+use App\GameLogic\Service\System;
 use App\GameLogic\Service\World;
 use App\Service\Serializer\Serializer;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -17,7 +18,8 @@ class ServiceFactory
 {
     private $services = [
         'security' => Security::class,
-        'world' => World::class
+        'world' => World::class,
+        'system' => System::class
     ];
 
     /**
