@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -34,7 +36,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $email;
 
@@ -58,9 +60,15 @@ class User implements UserInterface
      */
     private $createdAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\System", mappedBy="owner")
+     */
+    private $systems;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime('now');
+        $this->systems = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -192,6 +200,37 @@ class User implements UserInterface
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|System[]
+     */
+    public function getSystems(): Collection
+    {
+        return $this->systems;
+    }
+
+    public function addSystem(System $system): self
+    {
+        if (!$this->systems->contains($system)) {
+            $this->systems[] = $system;
+            $system->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSystem(System $system): self
+    {
+        if ($this->systems->contains($system)) {
+            $this->systems->removeElement($system);
+            // set the owning side to null (unless already changed)
+            if ($system->getOwner() === $this) {
+                $system->setOwner(null);
+            }
+        }
 
         return $this;
     }

@@ -5,7 +5,7 @@ namespace App\GameLogic\Exception;
 /**
  * @author Alexander Tsukanov <https://alexdevid.com>
  */
-class UserNotFoundException extends DomainObjectNotFoundException
+class DomainObjectNotFoundException extends \Exception
 {
 
 }

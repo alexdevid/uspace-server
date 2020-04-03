@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * @author Alexander Tsukanov <https://alexdevid.com>
  */
-class WorldGetRequest implements RequestInterface
+class SystemGetRequest implements RequestInterface
 {
     /**
      * @Serializer\Type("integer")

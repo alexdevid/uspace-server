@@ -30,3 +30,5 @@ services:
         public: true
     App\GameLogic\Service\World:
         public: true
+    App\GameLogic\Service\System:
+        public: true

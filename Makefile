@@ -13,15 +13,14 @@ cache-clear:
 db-drop:
 	bin/console doctrine:database:drop --if-exists --force --connection default
 
-db-create:
-	bin/console doctrine:database:create --connection default --if-not-exists
-
 db-migrations:
 	bin/console doctrine:migrations:migrate --em default --no-interaction
 
+db-create:
+	bin/console doctrine:database:create --connection default --if-not-exists
+
 db-fixtures:
 	bin/console doctrine:fixtures:load --append --em default --no-interaction
-
 
 phpunit:
 	bin/phpunit

@@ -5,7 +5,7 @@ namespace App\GameLogic\Service;
 use App\GameLogic\DataTransfer\RequestInterface;
 use App\GameLogic\DataTransfer\ResponseInterface;
 use App\GameLogic\DataTransfer\Worlds\WorldListRequest;
-use App\GameLogic\DataTransfer\Worlds\WorldRequest;
+use App\GameLogic\DataTransfer\Worlds\WorldGetRequest;
 use App\GameLogic\DataTransfer\Worlds\WorldResponse;
 use App\GameLogic\DataTransfer\Worlds\WorldsListResponse;
 use App\GameLogic\Exception\ActionNotFoundException;
@@ -83,7 +83,7 @@ class World implements GameServiceInterface
      */
     public function getRequestClass(string $action = null): string
     {
-        return $action === self::ACTION_LIST ? WorldListRequest::class : WorldRequest::class;
+        return $action === self::ACTION_LIST ? WorldListRequest::class : WorldGetRequest::class;
     }
 
 }
