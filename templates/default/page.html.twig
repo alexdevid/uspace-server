@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 id="{{ data.name }}">{{ data.name|upper }}</h1>
+    <hr>
+    {% for method in data.methods %}
+        <h2 id="{{ method.name }}">
+            {{ data.name }}.{{ method.name }}
+            {% if method.secure is defined and method.secure is same as(true) %}
+                <small class="color-gray">(secure)</small>
+            {% endif %}
+        </h2>
+        {% if method.request is defined %}
+            <h3>Request:</h3>
+            <ul>
+                {% for param, type in method.request %}
+                    <li>
+                        {{ param }} <span class="color-gray">{{ type }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if method.response is defined %}
+            <h3>Response:</h3>
+            <ul>
+                {% for param, type in method.response %}
+                    <li>
+                        {{ param }} <span class="color-gray">{{ type }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if loop.index != loop.last %}
+            <hr>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+

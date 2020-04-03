@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>
+        API docs
+    </h1>
+    <hr>
+    Every request should contain <code>method</code> parameter. <br>
+    If method accepts some data, there also should be <code>data</code> parameter. <br>
+    If method is <b>secure</b>, <code>token</code> parameter should be provided.
+    <pre>
+{
+    "method": "security.login",
+    "data": {
+        "username": "alexdevid",
+        "password": "c239b3cc7ebfea6b56c01b63590015ff"
+    }
+}
+    </pre>
+{% endblock %}
+

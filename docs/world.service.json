@@ -1,0 +1,29 @@
+{
+    "name": "world",
+    "methods": [
+        {
+            "name": "get",
+            "secure": true,
+            "request": {
+                "id": "integer"
+            },
+            "response": {
+                "id": "integer",
+                "name": "string",
+                "created_at": "DateTime[string]",
+                "status": "integer",
+                "seed": "integer",
+                "systems_total": "integer",
+                "max_players": "integer",
+                "current_players": "integer"
+            }
+        },
+        {
+            "name": "list",
+            "secure": true,
+            "response": {
+                "worlds": "World[]"
+            }
+        }
+    ]
+}

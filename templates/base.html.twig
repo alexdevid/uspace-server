@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+
+            small {
+                font-size: 12px;
+            }
+
+            .color-gray {
+                color: #8c8c8c;
+            }
+
+            a {
+                color: #8181f9;
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            .sidebar {
+                float: left;
+                width: 300px;
+                padding: 30px;
+            }
+
+            .sidebar-block {
+                margin-bottom: 30px;
+            }
+
+            .content {
+                float: left;
+                width: calc(100% - 300px);
+                padding: 30px;
+                line-height: 24px;
+            }
+
+            code {
+                color: #8c8c8c;
+            }
+
+            pre {
+                border-left: 2px solid #c8c8c8;
+                padding: 30px;
+                background-color: #fbfbfb;
+                line-height: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="sidebar">
+            <div class="sidebar-block">
+                <a href="{{ path('docs.index') }}">Api Doc</a>
+            </div>
+            <div class="sidebar-block">
+                Services:
+                <ul>
+                    <li>
+                        security
+                        <ul>
+                            <li><a href="{{ path('docs.service', {name: 'security'}) }}#auth">security.auth</a></li>
+                            <li><a href="{{ path('docs.service', {name: 'security'}) }}#login">security.login</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        world
+                        <ul>
+                            <li><a href="{{ path('docs.service', {name: 'world'}) }}#get">world.get</a></li>
+                            <li><a href="{{ path('docs.service', {name: 'world'}) }}#list">world.list</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar-block">
+                Models:
+                <ul>
+                    <li><a href="#">user</a></li>
+                    <li><a href="#">world</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-block">
+                Errors:
+            </div>
+        </div>
+        <div class="content">
+            {% block body %}{% endblock %}
+        </div>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

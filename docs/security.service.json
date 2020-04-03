@@ -1,0 +1,32 @@
+{
+    "name": "security",
+    "methods": [
+        {
+            "name": "auth",
+            "request": {
+                "token": "string"
+            },
+            "response": {
+                "id": "integer",
+                "token": "string",
+                "username": "string",
+                "email": "string",
+                "created_at": "string"
+            }
+        },
+        {
+            "name": "login",
+            "request": {
+                "username": "string",
+                "password": "string"
+            },
+            "response": {
+                "id": "integer",
+                "token": "string",
+                "username": "string",
+                "email": "string",
+                "created_at": "string"
+            }
+        }
+    ]
+}
