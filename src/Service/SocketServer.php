@@ -77,6 +77,7 @@ class SocketServer implements MessageComponentInterface
             }
 
             $response = $this->factory->run($message);
+            $this->logger->info($this->serializer->serialize($response));
             $from->send($this->serializer->serialize($response));
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
